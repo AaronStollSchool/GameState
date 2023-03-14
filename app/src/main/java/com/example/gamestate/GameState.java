@@ -27,7 +27,33 @@ public class GameState {
     private int p2RoundScore;
     private int roundScore;
 
+    public GameState(){
+        p1Points = 0;
+        p2Points = 0;
 
+        p1Hand = null;
+        p2Hand = null;
+
+        inPlayCards = null;
+        crib = null;
+
+        faceUpCard = null;
+
+        isHard = true;
+
+        isPlayer1Dealer = true;
+        if(isPlayer1Dealer){
+            isPlayer1Turn = false;
+        }
+        else{ isPlayer1Turn = true;
+        }
+
+
+        phase = null;
+        p1RoundScore = 0;
+        p2RoundScore = 0;
+        roundScore = 0;
+    }
 
 
 }
