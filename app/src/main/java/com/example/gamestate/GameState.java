@@ -110,6 +110,24 @@ public class GameState {
 
     }
 
+    public boolean playCard(Card c) {
+        if(isPlayer1Turn == true) {
+            if(c.isPlayable == true) {
+                p1Hand.remove(c);
+                inPlayCards.add(c);
+                return true;
+            }
+        }
+        else if(isPlayer1Turn == false){
+            if(c.isPlayable == true) {
+                p2Hand.remove(c);
+                inPlayCards.add(c);
+                return true;
+            }
+        }
+        return false;
+    }
+
 
     @Override
     public String toString() {
