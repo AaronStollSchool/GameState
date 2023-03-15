@@ -21,7 +21,10 @@ public class GameState {
     private boolean isPlayer1Turn;
     private boolean isPlayer1Dealer;
 
-    private GamePhase phase;
+    private int phase;
+    // 0 Menu
+    // 1 In Round
+    // 2 Score Screen
 
 
     private int p1RoundScore;
@@ -56,7 +59,7 @@ public class GameState {
             isPlayer1Turn = true;
         }
 
-        phase = null;
+        phase = 0;
         p1RoundScore = 0;
         p2RoundScore = 0;
         roundScore = 0;
@@ -85,7 +88,7 @@ public class GameState {
         this.isPlayer1Dealer = gamestate.isPlayer1Dealer;
 
         //need to set up GamePhase
-        this.phase = new GamePhase(gamestate.phase);
+        this.phase = gamestate.phase;
 
         this.p1RoundScore = gamestate.p1RoundScore;
         this.p2RoundScore = gamestate.p2RoundScore;
