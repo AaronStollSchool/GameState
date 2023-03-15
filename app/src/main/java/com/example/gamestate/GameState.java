@@ -13,6 +13,7 @@ public class GameState {
     private ArrayList<Card> deck;
     private ArrayList<Card> p1Hand;
     private ArrayList<Card> p2Hand;
+    private Deck cardDeck;
 
     private ArrayList<Card> inPlayCards;
     private ArrayList<Card> crib;
@@ -35,13 +36,19 @@ public class GameState {
         p1Points = 0;
         p2Points = 0;
 
-        p1Hand = null;
-        p2Hand = null;
+        cardDeck = new Deck();
+
+        p1Hand = new ArrayList<Card>();
+        p2Hand = new ArrayList<Card>();
+        for (int i = 0; i < 6; i++){
+            p1Hand.add(cardDeck.nextCard());
+            p2Hand.add(cardDeck.nextCard());
+        }
 
         inPlayCards = null;
         crib = null;
 
-        faceUpCard = null;
+        faceUpCard = cardDeck.nextCard();
 
         isHard = true;
 
