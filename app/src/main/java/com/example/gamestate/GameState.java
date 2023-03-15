@@ -96,11 +96,12 @@ public class GameState {
 
     public void setPlayerTurn() {
         isPlayer1Dealer = true;
-        if(isPlayer1Dealer){
+        if (isPlayer1Dealer) {
             isPlayer1Turn = false;
+        } else {
+            isPlayer1Turn = true;
         }
-        else{ isPlayer1Turn = true;
-        }
+    }
 
     public void setUpBoard() {
         dealCards();
