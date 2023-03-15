@@ -93,7 +93,7 @@ public class GameState {
         this.roundScore = gamestate.roundScore;
     }
 
-    public boolean cardSelect(boolean playerID, Card select){
+    public boolean cardSelect(boolean playerID, Card select){ return false; }
     public void dealCards() {
         for (int i = 0; i < 6; i++){
             p1Hand.add(cardDeck.nextCard());
@@ -107,13 +107,10 @@ public class GameState {
     public void setPlayerTurn() {
         isPlayer1Dealer = true;
         if(isPlayer1Dealer){
-            isPlayer1Turn = false;
+            playerTurn = 2;
         }
-        else{ isPlayer1Turn = true;
+        else{ playerTurn = 1;
         }
-    }
-
-
     }
     public boolean exitGame(int playerID){
         if (phase == 0){ // Game Phase is Menu cannot exit
