@@ -21,6 +21,8 @@ public class GameState {
     private boolean isHard;
 
     private int playerTurn;
+    //player 1 turn: 1
+    //player 2 turn: 2
     private boolean isPlayer1Dealer;
 
     private int phase;
@@ -140,14 +142,14 @@ public class GameState {
     }
 
     public boolean playCard(Card c) {
-        if(isPlayer1Turn == true) {
+        if(playerTurn == 1) {
             if(isPlayable(c) == true) {
                 p1Hand.remove(c);
                 inPlayCards.add(c);
                 return true;
             }
         }
-        else if(isPlayer1Turn == false){
+        else if(playerTurn == 2){
             if(isPlayable(c) == true) {
                 p2Hand.remove(c);
                 inPlayCards.add(c);
