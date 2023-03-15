@@ -28,7 +28,7 @@ public class GameState {
     private int p2RoundScore;
     private int roundScore;
 
-    public GameState(){
+    public GameState() {
         p1Points = 0;
         p2Points = 0;
 
@@ -36,7 +36,7 @@ public class GameState {
 
         p1Hand = new ArrayList<Card>();
         p2Hand = new ArrayList<Card>();
-        for (int i = 0; i < 6; i++){
+        for (int i = 0; i < 6; i++) {
             p1Hand.add(cardDeck.nextCard());
             p2Hand.add(cardDeck.nextCard());
         }
@@ -49,12 +49,12 @@ public class GameState {
         isHard = true;
 
         isPlayer1Dealer = true;
-        if(isPlayer1Dealer){
+        if(isPlayer1Dealer) {
             isPlayer1Turn = false;
         }
-        else{ isPlayer1Turn = true;
+        else {
+            isPlayer1Turn = true;
         }
-
 
         phase = null;
         p1RoundScore = 0;
@@ -62,5 +62,33 @@ public class GameState {
         roundScore = 0;
     }
 
+    //copy constructor
+    //takes a given GameState and does a deep copy
+    public GameState(GameState gamestate) {
+        this.p1Points = gamestate.p1Points;
+        this.p2Points = gamestate.p2Points;
 
+        this.p1Hand = new ArrayList<Card>();
+        this.p1Hand.addAll(gamestate.p1Hand);
+        this.p2Hand = new ArrayList<Card>();
+        this.p2Hand.addAll(gamestate.p2Hand);
+
+        this.inPlayCards = new ArrayList<Card>();
+        this.inPlayCards.addAll(gamestate.inPlayCards);
+        this.crib = new ArrayList<Card>();
+        this.crib.addAll(gamestate.crib);
+
+        this.faceUpCard = new Card(gamestate.faceUpCard.getCardValue(), gamestate.faceUpCard.getSuit());
+
+        this.isHard = gamestate.isHard;
+
+        this.isPlayer1Dealer = gamestate.isPlayer1Dealer;
+
+        //need to set up GamePhase
+        this.phase = new GamePhase(gamestate.phase);
+
+        this.p1RoundScore = gamestate.p1RoundScore;
+        this.p2RoundScore = gamestate.p2RoundScore;
+        this.roundScore = gamestate.roundScore;
+    }
 }

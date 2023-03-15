@@ -8,6 +8,8 @@ public class Card {
     public Card(int val, int suit){
        cardValue = val;
        this.suit = suit;
-
     }
+
+    public int getCardValue() {return cardValue;}
+    public int getSuit() {return suit;}
 }
