@@ -3,12 +3,14 @@ package com.example.gamestate;
 import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class GameState {
 
     private int p1Points;
     private int p2Points;
 
+    private ArrayList<Card> deck;
     private ArrayList<Card> p1Hand;
     private ArrayList<Card> p2Hand;
 
@@ -57,8 +59,20 @@ public class GameState {
         roundScore = 0;
     }
 
+
+
+    
+
+
+
     @Override
     public String toString() {
+
+        String p1Vals = "Player 1 Points: " + String.valueOf(p1Points) +
+                "Player 1 Hand: " + p1Hand.toString() + "Player 1 Round Score: " + p1RoundScore;
+        String p2Vals = "Player 2 Points: " + String.valueOf(p2Points) +
+                "Player 2 Hand: " + p2Hand.toString() + "Player 2 Round Score: " + p2RoundScore +
+                "Round total score: " + roundScore;
 
         Log.d("Player1", ""+ String.valueOf(p1Points));
         Log.d("Player2", ""+ String.valueOf(p2Points));
@@ -68,6 +82,6 @@ public class GameState {
         Log.d("Player2 Round Score", ""+p2RoundScore);
         Log.d("Round Score total", ""+roundScore);
 
-        return null;
+        return p1Vals + p2Vals;
     }
 }
