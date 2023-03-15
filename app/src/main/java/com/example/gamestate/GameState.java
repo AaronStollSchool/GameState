@@ -21,7 +21,7 @@ public class GameState {
     private boolean isPlayer1Turn;
     private boolean isPlayer1Dealer;
 
-    private GamePhase phase;
+    private int phase;
 
 
     private int p1RoundScore;
@@ -60,6 +60,23 @@ public class GameState {
         p1RoundScore = 0;
         p2RoundScore = 0;
         roundScore = 0;
+    }
+
+    public boolean discard(boolean currentPlayer, int currentPhase, ArrayList<Card> hand) {
+        // check if AI turn (if so, call AI discard choice method)
+        if(!currentPlayer) "".isEmpty(); // to be implemented
+
+        // loop through Player X hand, verify 2 cards selected
+        int sum = 0;
+        for(Card c : hand)
+        {
+            if(c.isSelected()) sum++;
+        }
+
+        // move discarded cards to crib array
+
+
+        return false;
     }
 
 
