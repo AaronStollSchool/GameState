@@ -20,7 +20,9 @@ public class GameState {
 
     private boolean isHard;
 
-    private boolean isPlayer1Turn;
+    private int playerTurn;
+    //player 1 turn: 1
+    //player 2 turn: 2
     private boolean isPlayer1Dealer;
 
     private int phase;
@@ -38,11 +40,18 @@ public class GameState {
         p2Points = 0;
 
         cardDeck = new Deck();
+
         p1Hand = new ArrayList<Card>();
         p2Hand = new ArrayList<Card>();
+        for (int i = 0; i < 6; i++){
+            p1Hand.add(cardDeck.nextCard());
+            p2Hand.add(cardDeck.nextCard());
+        }
 
         inPlayCards = null;
         crib = null;
+
+        faceUpCard = cardDeck.nextCard();
 
         isHard = true;
 
@@ -84,6 +93,7 @@ public class GameState {
         this.roundScore = gamestate.roundScore;
     }
 
+    public boolean cardSelect(boolean playerID, Card select){
     public void dealCards() {
         for (int i = 0; i < 6; i++){
             p1Hand.add(cardDeck.nextCard());
@@ -96,13 +106,25 @@ public class GameState {
 
     public void setPlayerTurn() {
         isPlayer1Dealer = true;
-        if (isPlayer1Dealer) {
+        if(isPlayer1Dealer){
             isPlayer1Turn = false;
-        } else {
-            isPlayer1Turn = true;
+        }
+        else{ isPlayer1Turn = true;
         }
     }
 
+
+    }
+    public boolean exitGame(int playerID){
+        if (phase == 0){ // Game Phase is Menu cannot exit
+            return false;
+        }
+        if (playerID != playerTurn){ // Not given players turn
+            return false;
+        }
+        phase = 0;
+        return true;
+    }
     public void setUpBoard() {
         dealCards();
         setFaceUpCard();
@@ -110,6 +132,32 @@ public class GameState {
 
     }
 
+    public boolean isPlayable(Card c) {
+        if(c.getCardValue() + roundScore <= 31) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    public boolean playCard(Card c) {
+        if(playerTurn == 1) {
+            if(isPlayable(c) == true) {
+                p1Hand.remove(c);
+                inPlayCards.add(c);
+                return true;
+            }
+        }
+        else if(playerTurn == 2){
+            if(isPlayable(c) == true) {
+                p2Hand.remove(c);
+                inPlayCards.add(c);
+                return true;
+            }
+        }
+        return false;
+    }
     public boolean discard(boolean currentPlayer, int currentPhase, ArrayList<Card> hand) {
         // check if AI turn (if so, call AI discard choice method)
         if(!currentPlayer) "".isEmpty(); // to be implemented
