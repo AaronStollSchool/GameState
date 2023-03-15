@@ -110,16 +110,25 @@ public class GameState {
 
     }
 
+    public boolean isPlayable(Card c) {
+        if(c.getCardValue() + roundScore <= 31) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
     public boolean playCard(Card c) {
         if(isPlayer1Turn == true) {
-            if(c.isPlayable == true) {
+            if(isPlayable(c) == true) {
                 p1Hand.remove(c);
                 inPlayCards.add(c);
                 return true;
             }
         }
         else if(isPlayer1Turn == false){
-            if(c.isPlayable == true) {
+            if(isPlayable(c) == true) {
                 p2Hand.remove(c);
                 inPlayCards.add(c);
                 return true;
@@ -127,7 +136,6 @@ public class GameState {
         }
         return false;
     }
-
 
     @Override
     public String toString() {
