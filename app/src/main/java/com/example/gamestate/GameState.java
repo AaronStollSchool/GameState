@@ -53,18 +53,12 @@ public class GameState {
 
         isHard = true;
 
-        isPlayer1Dealer = true;
-        if(isPlayer1Dealer){
-            playerTurn = 2;
-        }
-        else{ playerTurn = 1;
-        }
-
-
         phase = 0;
         p1RoundScore = 0;
         p2RoundScore = 0;
         roundScore = 0;
+
+        setUpBoard();
     }
 
     //copy constructor
@@ -98,6 +92,24 @@ public class GameState {
     }
 
     public boolean cardSelect(boolean playerID, Card select){
+    public void dealCards() {
+        for (int i = 0; i < 6; i++){
+            p1Hand.add(cardDeck.nextCard());
+            p2Hand.add(cardDeck.nextCard());
+        }
+    }
+    public void setFaceUpCard() {
+        faceUpCard = cardDeck.nextCard();
+    }
+
+    public void setPlayerTurn() {
+        isPlayer1Dealer = true;
+        if(isPlayer1Dealer){
+            isPlayer1Turn = false;
+        }
+        else{ isPlayer1Turn = true;
+        }
+    }
 
 
     }
@@ -111,7 +123,30 @@ public class GameState {
         phase = 0;
         return true;
     }
+    public void setUpBoard() {
+        dealCards();
+        setFaceUpCard();
+        setPlayerTurn();
 
+    }
+
+    public boolean playCard(Card c) {
+        if(isPlayer1Turn == true) {
+            if(c.isPlayable == true) {
+                p1Hand.remove(c);
+                inPlayCards.add(c);
+                return true;
+            }
+        }
+        else if(isPlayer1Turn == false){
+            if(c.isPlayable == true) {
+                p2Hand.remove(c);
+                inPlayCards.add(c);
+                return true;
+            }
+        }
+        return false;
+    }
 
 
     @Override
