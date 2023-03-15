@@ -1,5 +1,7 @@
 package com.example.gamestate;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 
 public class GameState {
@@ -31,7 +33,7 @@ public class GameState {
     private int p2RoundScore;
     private int roundScore;
 
-    public GameState() {
+    public GameState(){
         p1Points = 0;
         p2Points = 0;
 
@@ -39,7 +41,7 @@ public class GameState {
 
         p1Hand = new ArrayList<Card>();
         p2Hand = new ArrayList<Card>();
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < 6; i++){
             p1Hand.add(cardDeck.nextCard());
             p2Hand.add(cardDeck.nextCard());
         }
@@ -52,12 +54,12 @@ public class GameState {
         isHard = true;
 
         isPlayer1Dealer = true;
-        if(isPlayer1Dealer) {
+        if(isPlayer1Dealer){
             isPlayer1Turn = false;
         }
-        else {
-            isPlayer1Turn = true;
+        else{ isPlayer1Turn = true;
         }
+
 
         phase = 0;
         p1RoundScore = 0;
@@ -93,5 +95,21 @@ public class GameState {
         this.p1RoundScore = gamestate.p1RoundScore;
         this.p2RoundScore = gamestate.p2RoundScore;
         this.roundScore = gamestate.roundScore;
+    }
+
+
+
+
+
+    @Override
+    public String toString() {
+
+        String p1Vals = "Player 1 Points: " + String.valueOf(p1Points) +
+                "Player 1 Hand: " + p1Hand.toString() + "Player 1 Round Score: " + p1RoundScore;
+        String p2Vals = "Player 2 Points: " + String.valueOf(p2Points) +
+                "Player 2 Hand: " + p2Hand.toString() + "Player 2 Round Score: " + p2RoundScore +
+                "Round total score: " + roundScore;
+
+        return p1Vals + p2Vals;
     }
 }
