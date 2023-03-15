@@ -20,7 +20,7 @@ public class GameState {
 
     private boolean isHard;
 
-    private boolean isPlayer1Turn;
+    private int playerTurn;
     private boolean isPlayer1Dealer;
 
     private int phase;
@@ -55,9 +55,9 @@ public class GameState {
 
         isPlayer1Dealer = true;
         if(isPlayer1Dealer){
-            isPlayer1Turn = false;
+            playerTurn = 2;
         }
-        else{ isPlayer1Turn = true;
+        else{ playerTurn = 1;
         }
 
 
@@ -97,7 +97,20 @@ public class GameState {
         this.roundScore = gamestate.roundScore;
     }
 
+    public boolean cardSelect(boolean playerID, Card select){
 
+
+    }
+    public boolean exitGame(int playerID){
+        if (phase == 0){ // Game Phase is Menu cannot exit
+            return false;
+        }
+        if (playerID != playerTurn){ // Not given players turn
+            return false;
+        }
+        phase = 0;
+        return true;
+    }
 
 
 
