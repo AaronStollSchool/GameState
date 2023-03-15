@@ -1,5 +1,7 @@
 package com.example.gamestate;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 
 public class GameState {
@@ -29,5 +31,17 @@ public class GameState {
 
 
 
+    @Override
+    public String toString() {
 
+        Log.d("Player1", ""+ String.valueOf(p1Points));
+        Log.d("Player2", ""+ String.valueOf(p2Points));
+        Log.d("Player1 Hand", p1Hand.toString());
+        Log.d("Player2 Hand", p2Hand.toString());
+        Log.d("Player1 Round Score", ""+p1RoundScore);
+        Log.d("Player2 Round Score", ""+p2RoundScore);
+        Log.d("Round Score total", ""+roundScore);
+
+        return null;
+    }
 }
