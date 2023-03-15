@@ -20,7 +20,7 @@ public class GameState {
 
     private boolean isHard;
 
-    private boolean isPlayer1Turn;
+    private int playerTurn;
     private boolean isPlayer1Dealer;
 
     private int phase;
@@ -38,11 +38,18 @@ public class GameState {
         p2Points = 0;
 
         cardDeck = new Deck();
+
         p1Hand = new ArrayList<Card>();
         p2Hand = new ArrayList<Card>();
+        for (int i = 0; i < 6; i++){
+            p1Hand.add(cardDeck.nextCard());
+            p2Hand.add(cardDeck.nextCard());
+        }
 
         inPlayCards = null;
         crib = null;
+
+        faceUpCard = cardDeck.nextCard();
 
         isHard = true;
 
@@ -84,6 +91,7 @@ public class GameState {
         this.roundScore = gamestate.roundScore;
     }
 
+    public boolean cardSelect(boolean playerID, Card select){
     public void dealCards() {
         for (int i = 0; i < 6; i++){
             p1Hand.add(cardDeck.nextCard());
@@ -103,6 +111,18 @@ public class GameState {
         }
     }
 
+
+    }
+    public boolean exitGame(int playerID){
+        if (phase == 0){ // Game Phase is Menu cannot exit
+            return false;
+        }
+        if (playerID != playerTurn){ // Not given players turn
+            return false;
+        }
+        phase = 0;
+        return true;
+    }
     public void setUpBoard() {
         dealCards();
         setFaceUpCard();
