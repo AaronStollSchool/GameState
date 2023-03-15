@@ -3,14 +3,12 @@ package com.example.gamestate;
 import android.util.Log;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 public class GameState {
 
     private int p1Points;
     private int p2Points;
 
-    private ArrayList<Card> deck;
     private ArrayList<Card> p1Hand;
     private ArrayList<Card> p2Hand;
     private Deck cardDeck;
@@ -66,9 +64,37 @@ public class GameState {
         roundScore = 0;
     }
 
+    //copy constructor
+    //takes a given GameState and does a deep copy
+    public GameState(GameState gamestate) {
+        this.p1Points = gamestate.p1Points;
+        this.p2Points = gamestate.p2Points;
+
+        this.p1Hand = new ArrayList<Card>();
+        this.p1Hand.addAll(gamestate.p1Hand);
+        this.p2Hand = new ArrayList<Card>();
+        this.p2Hand.addAll(gamestate.p2Hand);
+
+        this.inPlayCards = new ArrayList<Card>();
+        this.inPlayCards.addAll(gamestate.inPlayCards);
+        this.crib = new ArrayList<Card>();
+        this.crib.addAll(gamestate.crib);
+
+        this.faceUpCard = new Card(gamestate.faceUpCard.getCardValue(), gamestate.faceUpCard.getSuit());
+
+        this.isHard = gamestate.isHard;
+
+        this.isPlayer1Dealer = gamestate.isPlayer1Dealer;
+
+        //need to set up GamePhase
+        this.phase = new GamePhase(gamestate.phase);
+
+        this.p1RoundScore = gamestate.p1RoundScore;
+        this.p2RoundScore = gamestate.p2RoundScore;
+        this.roundScore = gamestate.roundScore;
+    }
 
 
-    
 
 
 
