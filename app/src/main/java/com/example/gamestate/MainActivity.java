@@ -31,14 +31,12 @@ public class MainActivity extends AppCompatActivity {
                 GameState secondInstance = new GameState(firstInstance);
 
                 //call each method in GameState and print descriptions of the actions taken to the EditText
-                firstInstance.
                 etext.append("test");
+                etext.setText(secondInstance.toString());
 
                 GameState thirdInstance = new GameState();
                 GameState fourthInstance = new GameState(thirdInstance);
             }
         });
     }
-
-
 }
