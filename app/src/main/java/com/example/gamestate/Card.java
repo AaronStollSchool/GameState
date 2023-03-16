@@ -1,7 +1,7 @@
 package com.example.gamestate;
 
 /**
- * @authors Aaron, Aether, Kincaid, Sean
+ * @authors Aaron Stoll, Aether Mocker, Kincaid Larson, Sean Murray
  * @version March 2023
  */
 public class Card {

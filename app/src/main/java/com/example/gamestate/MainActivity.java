@@ -9,7 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 /**
- * @authors Aaron, Aether, Kincaid, Sean
+ * @authors Aaron Stoll, Aether Mocker, Kincaid Larson, Sean Murray
  * @version March 2023
  */
 public class MainActivity extends AppCompatActivity {

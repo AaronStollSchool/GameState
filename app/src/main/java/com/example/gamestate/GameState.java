@@ -5,18 +5,20 @@ import android.util.Log;
 import java.util.ArrayList;
 
 /**
- * @authors Aaron, Aether, Kincaid, Sean
+ * @authors Aaron Stoll, Aether Mocker, Kincaid Larson, Sean Murray
  * @version March 2023
  */
 public class GameState {
-
+    // Total Game Score for each player
     private int p1Points;
     private int p2Points;
 
+    // Each Players hand of Card objects
     private ArrayList<Card> p1Hand;
     private ArrayList<Card> p2Hand;
     private Deck cardDeck;
 
+    // Arraylists for cards on table during play
     private ArrayList<Card> inPlayCards;
     private ArrayList<Card> crib;
 
@@ -113,7 +115,7 @@ public class GameState {
         return true;
     }
 
-    public Card getFaceUpCard() {return faceUpCard;}
+
 
     public boolean setPlayerTurn(int p) {
         playerTurn = p;
@@ -210,7 +212,41 @@ public class GameState {
         return hands;
     }
 
+    public Card getHandCard(int playerId, int index){
+        Card out = null;
+        if(playerId == 1){out = p1Hand.get(index);}
+        if(playerId == 2){out = p2Hand.get(index);}
+        return out;
+    }
+    public int getHandSize(int playerId){
+        int size = 0;
+        if(playerId == 1){size = p1Hand.size();}
+        if(playerId == 2){size = p2Hand.size();}
+        return size;
+    }
+    public int getRoundScore(int playerId){
+        int out= 0;
+        if(playerId == 1){out = p1RoundScore;}
+        if(playerId == 2){out = p2RoundScore;}
+        return out;
+    }
+    public int getGameScore(int playerId){
+        int out = 0;
+        if(playerId == 1){out = p1Points;}
+        if(playerId == 2){out = p2Points;}
+        return out;
+    }
+    public Card getLastPlayed(){
+        return inPlayCards.get(inPlayCards.size()-1);
+    }
+    public Card getCribCard(int index){
+        return crib.get(index);
+    }
+    public int getCribSize(){
+        return crib.size();
+    }
 
+    public Card getFaceUpCard() {return faceUpCard;}
     @Override
     public String toString() {
 
