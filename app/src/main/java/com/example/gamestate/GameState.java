@@ -112,6 +112,8 @@ public class GameState {
         return true;
     }
 
+    public Card getFaceUpCard() {return faceUpCard;}
+
     public boolean setPlayerTurn(int p) {
         playerTurn = p;
         return true;

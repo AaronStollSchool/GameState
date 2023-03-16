@@ -31,11 +31,24 @@ public class MainActivity extends AppCompatActivity {
                 GameState secondInstance = new GameState(firstInstance);
 
                 //call each method in GameState and print descriptions of the actions taken to the EditText
-                firstInstance.
-                etext.append("test");
+                firstInstance.setUpBoard(); //calls dealCards() and setFaceUpCards()
+                etext.append("hands of both players have been dealt\n");
+                etext.append("face up card has been set to a card with the value " + firstInstance.getFaceUpCard().getCardValue() + " and suit " + firstInstance.getFaceUpCard().getSuit() + "\n");
+                firstInstance.setPlayerTurn(1);
+                etext.append("dealer has been set to player 1\n");
+                firstInstance.exitGame(0);
+                etext.append("game was exited\n");
+                //firstInstance.playCard();
+                //firstInstance.endTurn();
+                //firstInstance.discard();
+
+                //etext.append("test");
 
                 GameState thirdInstance = new GameState();
                 GameState fourthInstance = new GameState(thirdInstance);
+
+                String instance2Str = secondInstance.toString();
+                String instance4Str = fourthInstance.toString();
             }
         });
     }
