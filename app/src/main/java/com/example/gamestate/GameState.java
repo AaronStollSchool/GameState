@@ -75,9 +75,9 @@ public class GameState {
         this.p2Hand.addAll(gamestate.p2Hand);
 
         this.inPlayCards = new ArrayList<Card>();
-        this.inPlayCards.addAll(gamestate.inPlayCards);
+        //this.inPlayCards.addAll(gamestate.inPlayCards);
         this.crib = new ArrayList<Card>();
-        this.crib.addAll(gamestate.crib);
+        //this.crib.addAll(gamestate.crib);
 
         this.faceUpCard = new Card(gamestate.faceUpCard.getCardValue(), gamestate.faceUpCard.getSuit());
 
@@ -97,11 +97,12 @@ public class GameState {
         return true;
     }
 
-    public void dealCards() {
+    public boolean dealCards() {
         for (int i = 0; i < 6; i++){
             p1Hand.add(cardDeck.nextCard());
             p2Hand.add(cardDeck.nextCard());
         }
+        return true;
     }
     public boolean setFaceUpCard() {
         faceUpCard = cardDeck.nextCard();
@@ -191,14 +192,40 @@ public class GameState {
         return false;
     }
 
+    public String stringHands(ArrayList<Card> c) {
+        String[] hand = new String[c.size()];
+        String hands = "";
+
+        for(int i = 0; i < c.size(); ++i) {
+            if(c.get(i).getSuit() == 1) {
+                hand[i] = "Heart";
+            }
+            else if(c.get(i).getSuit() == 2) {
+                hand[i] = "Diamond";
+            }
+            else if(c.get(i).getSuit() == 3) {
+                hand[i] = "Spade";
+            }
+            else if(c.get(i).getSuit() == 4) {
+                hand[i] = "Club";
+            }
+        }
+        for(int i = 0; i < c.size(); ++i) {
+            hands += hand[i] + " ";
+        }
+
+        return hands;
+    }
+
+
     @Override
     public String toString() {
 
         String p1Vals = "Player 1 Points: " + String.valueOf(p1Points) +
-                "Player 1 Hand: " + p1Hand.toString() + "Player 1 Round Score: " + p1RoundScore;
-        String p2Vals = "Player 2 Points: " + String.valueOf(p2Points) +
-                "Player 2 Hand: " + p2Hand.toString() + "Player 2 Round Score: " + p2RoundScore +
-                "Round total score: " + roundScore;
+                " Player 1 Hand: " + String.valueOf(stringHands(p1Hand)) + " Player 1 Round Score: " + p1RoundScore;
+        String p2Vals = " Player 2 Points: " + String.valueOf(p2Points) +
+                " Player 2 Hand: " +  String.valueOf(stringHands(p2Hand)) + " Player 2 Round Score: " + p2RoundScore +
+                " Round total score: " + roundScore;
 
         return p1Vals + p2Vals;
     }
