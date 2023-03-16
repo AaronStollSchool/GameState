@@ -3,6 +3,7 @@ package com.example.gamestate;
 import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * @authors Aaron Stoll, Aether Mocker, Kincaid Larson, Sean Murray
@@ -40,6 +41,7 @@ public class GameState {
     private int p1RoundScore;
     private int p2RoundScore;
     private int roundScore;
+    private Random gen;
 
     public GameState(){
         p1Points = 0;
@@ -61,10 +63,14 @@ public class GameState {
 
         isHard = true;
 
+        playerTurn = 0;
+
         phase = 0;
         p1RoundScore = 0;
         p2RoundScore = 0;
         roundScore = 0;
+
+        gen = new Random();
 
         setUpBoard();
     }
@@ -97,6 +103,8 @@ public class GameState {
         this.p1RoundScore = gamestate.p1RoundScore;
         this.p2RoundScore = gamestate.p2RoundScore;
         this.roundScore = gamestate.roundScore;
+
+        this.gen = gamestate.gen;
     }
 
     public boolean cardSelect(boolean playerID, Card select){
@@ -117,8 +125,29 @@ public class GameState {
 
 
 
+    /*
+     * Randomly initializes player turn for first round, and toggles
+     * for every subsequent call. Dealer will always be opposite of
+     * player turn (i.e. if it is player 1's turn, player 2 is dealer).
+     */
     public boolean setPlayerTurn(int p) {
-        playerTurn = p;
+        if(playerTurn == 0) {
+            playerTurn = gen.nextInt(2) + 1;
+
+            if(playerTurn == 1) {
+                isPlayer1Dealer = false;
+            } else {
+                isPlayer1Dealer = true;
+            }
+        } else {
+            if(playerTurn == 1) {
+                playerTurn = 2;
+            } else {
+                playerTurn = 1;
+            }
+
+            isPlayer1Dealer = !(isPlayer1Dealer);
+        }
         return true;
     }
 
