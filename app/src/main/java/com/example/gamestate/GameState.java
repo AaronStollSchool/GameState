@@ -107,9 +107,6 @@ public class GameState {
         this.gen = gamestate.gen;
     }
 
-    public boolean cardSelect(boolean playerID, Card select){
-        return true;
-    }
 
     public boolean dealCards() {
         for (int i = 0; i < 6; i++){
@@ -162,8 +159,6 @@ public class GameState {
         return true;
     }
 
-    //compiles all setting up actions so that it's easier to call.
-    //change: setPlayerTurn (?) this needs to be adaptable for change of turns(or j make separate)
     public boolean setUpBoard() {
         dealCards();
         setFaceUpCard();
@@ -213,19 +208,21 @@ public class GameState {
         return false;
     }
 
-    public boolean discard(boolean currentPlayer, int currentPhase, ArrayList<Card> hand) {
-        // check if AI turn (if so, call AI discard choice method)
-        if(!currentPlayer) "".isEmpty(); // to be implemented
-
-        // loop through Player X hand, verify 2 cards selected
-        int sum = 0;
-        for(Card c : hand)
-        {
-            if(c.isSelected()) sum++;
+    public boolean discard(Card c) { //discard TO CRIB
+        if(playerTurn == 1) {
+            if(isPlayable(c) == true) {
+                p1Hand.remove(c);
+                crib.add(c);
+                return true;
+            }
         }
-
-        // move discarded cards to crib array
-
+        else if(playerTurn == 2){
+            if(isPlayable(c) == true) {
+                p2Hand.remove(c);
+                crib.add(c);
+                return true;
+            }
+        }
         return false;
     }
 
@@ -235,9 +232,8 @@ public class GameState {
 
         for(int i = 0; i < c.size(); ++i) {
             hand[i] = c.get(i).toString();
-            hands += hand[i] + " ";
+            hands += hand[i] + ", ";
         }
-
         return hands;
     }
 

@@ -22,8 +22,6 @@ public class MainActivity extends AppCompatActivity {
 
         Button testButton = findViewById(R.id.testButton);
         EditText etext = findViewById(R.id.textView);
-        GameState first = new GameState();
-        etext.setText(first.toString());
 
         testButton.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -35,9 +33,21 @@ public class MainActivity extends AppCompatActivity {
                 //call each method in GameState and print descriptions of the actions taken to the EditText
                 firstInstance.setUpBoard(); //calls dealCards() and setFaceUpCards()
                 etext.append("hands of both players have been dealt\n");
-                etext.append("face up card has been set to a card with the value " + firstInstance.getFaceUpCard().getCardValue() + " and suit " + firstInstance.getFaceUpCard().getSuit() + "\n");
+                etext.append("face up card has been set to a card with the value " + firstInstance.getFaceUpCard().toString() + "\n");
+
                 firstInstance.setPlayerTurn(1);
                 etext.append("dealer has been set to player 1\n");
+
+                etext.append("both player's statistics so far: \n" + firstInstance.toString());
+
+                firstInstance.discard(firstInstance.getHandCard(1, 0));
+                firstInstance.discard(firstInstance.getHandCard(1, 2));
+                etext.append("player 1 discarded " + firstInstance.getCribCard(0).toString() + "\n");
+
+                firstInstance.playCard(firstInstance.getHandCard(1,0));
+                etext.append("player 1 played " + firstInstance.getLastPlayed().toString() + "\n");
+
+
                 firstInstance.exitGame(0);
                 etext.append("game was exited\n");
                 //firstInstance.playCard();
