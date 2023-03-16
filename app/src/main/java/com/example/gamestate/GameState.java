@@ -4,6 +4,10 @@ import android.util.Log;
 
 import java.util.ArrayList;
 
+/**
+ * @authors Aaron, Aether, Kincaid, Sean
+ * @version March 2023
+ */
 public class GameState {
 
     private int p1Points;

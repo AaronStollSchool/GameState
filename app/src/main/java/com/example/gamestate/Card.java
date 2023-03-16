@@ -1,5 +1,9 @@
 package com.example.gamestate;
 
+/**
+ * @authors Aaron, Aether, Kincaid, Sean
+ * @version March 2023
+ */
 public class Card {
 
     private int cardValue;

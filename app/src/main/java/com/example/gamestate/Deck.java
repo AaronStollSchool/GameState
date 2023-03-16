@@ -3,6 +3,10 @@ package com.example.gamestate;
 import java.util.ArrayList;
 import java.util.Collections;
 
+/**
+ * @authors Aaron, Aether, Kincaid, Sean
+ * @version March 2023
+ */
 public class Deck {
     private ArrayList<Card> gameDeck;
     private int deckIndex;

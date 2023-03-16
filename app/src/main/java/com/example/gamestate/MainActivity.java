@@ -8,6 +8,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+/**
+ * @authors Aaron, Aether, Kincaid, Sean
+ * @version March 2023
+ */
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -27,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
                 GameState secondInstance = new GameState(firstInstance);
 
                 //call each method in GameState and print descriptions of the actions taken to the EditText
+                firstInstance.
                 etext.append("test");
 
                 GameState thirdInstance = new GameState();
