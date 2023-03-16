@@ -35,20 +35,22 @@ public class MainActivity extends AppCompatActivity {
                 etext.append("hands of both players have been dealt\n");
                 etext.append("face up card has been set to a card with the value " + firstInstance.getFaceUpCard().toString() + "\n");
 
-                firstInstance.setPlayerTurn(1);
+                firstInstance.setPlayerTurn(1); //setPlayerTurn()
                 etext.append("dealer has been set to player 1\n");
 
-                etext.append("both player's statistics so far: \n" + firstInstance.toString());
+                etext.append("both player's statistics so far: \n" + firstInstance.toString() + "\n");
 
                 firstInstance.discard(firstInstance.getHandCard(1, 0));
                 firstInstance.discard(firstInstance.getHandCard(1, 2));
-                etext.append("player 1 discarded " + firstInstance.getCribCard(0).toString() + "\n");
+                etext.append("player 1 discarded " + firstInstance.getCribCard(0).toString() + " and " + firstInstance.getCribCard(1).toString() +" to the crib\n");
 
                 firstInstance.playCard(firstInstance.getHandCard(1,0));
                 etext.append("player 1 played " + firstInstance.getLastPlayed().toString() + "\n");
 
+                firstInstance.endTurn(1);
+                etext.append("player 1 ended their turn \n");
 
-                firstInstance.exitGame(0);
+                firstInstance.exitGame(1);
                 etext.append("game was exited\n");
                 //firstInstance.playCard();
                 //firstInstance.endTurn();

@@ -196,16 +196,14 @@ public class GameState {
     }
 
     //can be end turn or change turn, not sure if completely needed
-    public boolean endTurn() {
-        if(playerTurn == 1) { //if it's player 1's turn, make it player 2's.
+    public boolean endTurn(int playerID) {
+        if(playerTurn == playerID) { //if it's player 1's turn, make it player 2's.
             playerTurn = 2;
-            return true;
         }
-        else if(playerTurn == 2) {
+        else {
             playerTurn = 1;
-            return true;
         }
-        return false;
+        return true;
     }
 
     public boolean discard(Card c) { //discard TO CRIB
