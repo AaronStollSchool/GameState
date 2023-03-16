@@ -1,12 +1,17 @@
 package com.example.gamestate;
 
+/**
+ * @authors Aaron, Aether, Kincaid, Sean
+ * @version March 2023
+ */
 public class Card {
 
     private int cardValue;
-    // 1-10 regular cards
+    // 2-10 regular cards
     // 11-14 Jack, Queen, King, Ace
     private int suit;
     // 1-4 diamond, heart, spade, club
+
 
     private boolean isSelected;
 

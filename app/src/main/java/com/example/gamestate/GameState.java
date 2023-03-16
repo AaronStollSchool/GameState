@@ -4,6 +4,10 @@ import android.util.Log;
 
 import java.util.ArrayList;
 
+/**
+ * @authors Aaron, Aether, Kincaid, Sean
+ * @version March 2023
+ */
 public class GameState {
 
     private int p1Points;
@@ -48,8 +52,8 @@ public class GameState {
             p2Hand.add(cardDeck.nextCard());
         }
 
-        inPlayCards = null;
-        crib = null;
+        inPlayCards = new ArrayList<Card>();
+        crib = new ArrayList<Card>();
 
         faceUpCard = cardDeck.nextCard();
 

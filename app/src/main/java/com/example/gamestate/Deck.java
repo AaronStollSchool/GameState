@@ -1,7 +1,12 @@
 package com.example.gamestate;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
+/**
+ * @authors Aaron, Aether, Kincaid, Sean
+ * @version March 2023
+ */
 public class Deck {
     private ArrayList<Card> gameDeck;
     private int deckIndex;
@@ -10,13 +15,15 @@ public class Deck {
         gameDeck = new ArrayList<Card>();
         deckIndex = 0;
 
-        for (int i = 0; i < 52; i++){
-            int val = 0; // PLACEHOLDER FOR ACTUAL RANDOM GENERATION
-            int suit = 0; // PLACEHOLDER FOR ACTUAL RANDOM GENERATION
-            Card holder = new Card(val, suit);
-
-            gameDeck.add(holder);
+        for (int i = 1; i <= 4; i++){
+            for(int j = 2; j <= 14; j++){
+                int val = j;
+                int suit = i;
+                Card holder = new Card(val, suit);
+                gameDeck.add(holder);
+            }
         }
+        Collections.shuffle(gameDeck);
     }
 
     public Card nextCard(){
@@ -25,4 +32,6 @@ public class Deck {
 
         return out;
     }
+
+
 }

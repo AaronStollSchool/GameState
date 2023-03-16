@@ -19,15 +19,15 @@ public class MainActivity extends AppCompatActivity {
         Button testButton = findViewById(R.id.testButton);
         EditText etext = findViewById(R.id.textView);
 
-        testButton.setOnClickListener(new View.OnClickListener() {
-
+        testButton.setOnClickListener(new View.OnClickListener(){
+            @Override
             public void onClick(View view) {
                 etext.setText("");
                 GameState firstInstance = new GameState();
                 GameState secondInstance = new GameState(firstInstance);
 
                 //call each method in GameState and print descriptions of the actions taken to the EditText
-                etext.setText(""+firstInstance.toString());
+
 
                 GameState thirdInstance = new GameState();
                 GameState fourthInstance = new GameState(thirdInstance);
