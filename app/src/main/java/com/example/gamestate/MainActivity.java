@@ -22,6 +22,8 @@ public class MainActivity extends AppCompatActivity {
 
         Button testButton = findViewById(R.id.testButton);
         EditText etext = findViewById(R.id.textView);
+        GameState first = new GameState();
+        etext.setText(first.toString());
 
         testButton.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -35,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
                 etext.append("hands of both players have been dealt\n");
                 etext.append("face up card has been set to a card with the value " + firstInstance.getFaceUpCard().toString() + "\n");
 
-                firstInstance.setPlayerTurn(1);
+                firstInstance.setPlayerTurn();
                 etext.append("dealer has been set to player 1\n");
 
                 etext.append("both player's statistics so far: \n" + firstInstance.toString());
@@ -48,6 +50,8 @@ public class MainActivity extends AppCompatActivity {
                 etext.append("player 1 played " + firstInstance.getLastPlayed().toString() + "\n");
 
 
+                etext.append("face up card has been set to the " + firstInstance.getFaceUpCard().toString() + "\n");
+                etext.append("dealer has been set to player " + firstInstance.getPlayerTurn() +"\n");
                 firstInstance.exitGame(0);
                 etext.append("game was exited\n");
                 //firstInstance.playCard();

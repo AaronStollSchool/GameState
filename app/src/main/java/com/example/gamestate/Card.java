@@ -47,7 +47,7 @@ public class Card {
                 s1 = "Ace";
                 break;
             default:
-                s1 = Integer.toString(cardValue);
+                s1 = "0";//Integer.toString(cardValue);
                 break;
         }
 

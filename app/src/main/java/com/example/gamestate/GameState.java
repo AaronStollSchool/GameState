@@ -120,14 +120,16 @@ public class GameState {
         return true;
     }
 
-
+    public int getPlayerTurn() {
+        return playerTurn;
+    }
 
     /*
      * Randomly initializes player turn for first round, and toggles
      * for every subsequent call. Dealer will always be opposite of
      * player turn (i.e. if it is player 1's turn, player 2 is dealer).
      */
-    public boolean setPlayerTurn(int p) {
+    public boolean setPlayerTurn() {
         if(playerTurn == 0) {
             playerTurn = gen.nextInt(2) + 1;
 
@@ -162,7 +164,7 @@ public class GameState {
     public boolean setUpBoard() {
         dealCards();
         setFaceUpCard();
-        setPlayerTurn(playerTurn);
+        setPlayerTurn();
         return true;
     }
 
