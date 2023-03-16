@@ -48,8 +48,8 @@ public class GameState {
             p2Hand.add(cardDeck.nextCard());
         }
 
-        inPlayCards = null;
-        crib = null;
+        inPlayCards = new ArrayList<Card>();
+        crib = new ArrayList<Card>();
 
         faceUpCard = cardDeck.nextCard();
 

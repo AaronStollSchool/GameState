@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
                 GameState secondInstance = new GameState(firstInstance);
 
                 //call each method in GameState and print descriptions of the actions taken to the EditText
-
+                etext.append("test");
 
                 GameState thirdInstance = new GameState();
                 GameState fourthInstance = new GameState(thirdInstance);
