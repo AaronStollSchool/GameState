@@ -22,6 +22,8 @@ public class MainActivity extends AppCompatActivity {
 
         Button testButton = findViewById(R.id.testButton);
         EditText etext = findViewById(R.id.textView);
+        GameState first = new GameState();
+        etext.setText(first.toString());
 
         testButton.setOnClickListener(new View.OnClickListener(){
             @Override

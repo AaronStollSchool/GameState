@@ -201,20 +201,7 @@ public class GameState {
         String hands = "";
 
         for(int i = 0; i < c.size(); ++i) {
-            if(c.get(i).getSuit() == 1) {
-                hand[i] = "Heart";
-            }
-            else if(c.get(i).getSuit() == 2) {
-                hand[i] = "Diamond";
-            }
-            else if(c.get(i).getSuit() == 3) {
-                hand[i] = "Spade";
-            }
-            else if(c.get(i).getSuit() == 4) {
-                hand[i] = "Club";
-            }
-        }
-        for(int i = 0; i < c.size(); ++i) {
+            hand[i] = c.get(i).toString();
             hands += hand[i] + " ";
         }
 
