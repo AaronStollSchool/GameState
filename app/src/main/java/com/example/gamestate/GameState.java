@@ -262,8 +262,8 @@ public class GameState {
     public Card getCribCard(int index){
         return crib.get(index);
     }
-
     public Card getFaceUpCard() {return faceUpCard;}
+
     @Override
     public String toString() {
 
