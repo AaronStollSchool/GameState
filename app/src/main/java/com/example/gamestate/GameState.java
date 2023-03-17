@@ -66,8 +66,6 @@ public class GameState {
         roundScore = 0;
 
         gen = new Random();
-
-        setUpBoard();
     }
 
     //copy constructor
