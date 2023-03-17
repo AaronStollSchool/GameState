@@ -31,10 +31,10 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 etext.setText("");
                 GameState firstInstance = new GameState();
-                GameState secondInstance = new GameState(firstInstance);
+                GameState secondInstance = new GameState(firstInstance, 1);
 
                 //call each method in GameState and print descriptions of the actions taken to the EditText
-                firstInstance.setUpBoard(); //calls dealCards() and setFaceUpCards()
+
                 etext.append("Hands of both players have been dealt.\n");
                 etext.append("Face up card was drawn, the " + firstInstance.getFaceUpCard().toString() + ".\n");
 
@@ -43,11 +43,11 @@ public class MainActivity extends AppCompatActivity {
 
                 etext.append("Both player's statistics so far: \n" + firstInstance.toString() + "\n");
 
-                firstInstance.discard(firstInstance.getHandCard(1, 0)); //discard()
-                firstInstance.discard(firstInstance.getHandCard(1, 2));
+                firstInstance.discard(1, firstInstance.getHandCard(1, 0)); //discard()
+                firstInstance.discard(1, firstInstance.getHandCard(1, 2));
                 etext.append("Player 1 discarded " + firstInstance.getCribCard(0).toString() + " and " + firstInstance.getCribCard(1).toString() +" to the crib.\n");
 
-                firstInstance.playCard(firstInstance.getHandCard(1,0)); //playCard()
+                firstInstance.playCard(1, firstInstance.getHandCard(1,0)); //playCard()
                 etext.append("Player 1 played the " + firstInstance.getLastPlayed().toString() + ".\n");
 
                 firstInstance.endTurn(1);
@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
 
 
                 GameState thirdInstance = new GameState();
-                GameState fourthInstance = new GameState(thirdInstance);
+                GameState fourthInstance = new GameState(thirdInstance, 1);
 
                 String instance2Str = secondInstance.toString();
                 String instance4Str = fourthInstance.toString();
@@ -69,6 +69,10 @@ public class MainActivity extends AppCompatActivity {
                 etext.append(instance2Str);
                 etext.append("\nFourth Instance:\n");
                 etext.append(instance4Str);
+                // Instance 2 & 4 will have different hands
+                // Although they are both a deep copy of default constructors of Game State
+                // everytime GameState is constructed a random hand and deck is populated for
+                // functionality between rounds
             }
         });
     }

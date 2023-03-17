@@ -54,8 +54,6 @@ public class GameState {
         inPlayCards = new ArrayList<Card>();
         crib = new ArrayList<Card>();
 
-        faceUpCard = cardDeck.nextCard();
-
         isHard = true;
 
         playerTurn = 0;
@@ -66,11 +64,13 @@ public class GameState {
         roundScore = 0;
 
         gen = new Random();
+
+        setUpBoard();
     }
 
     //copy constructor
     //takes a given GameState and does a deep copy
-    public GameState(GameState gamestate) {
+    public GameState(GameState gamestate, int playerID) {
         this.p1Points = gamestate.p1Points;
         this.p2Points = gamestate.p2Points;
 
@@ -100,6 +100,12 @@ public class GameState {
         this.gen = gamestate.gen;
     }
 
+    public boolean setUpBoard() {
+        dealCards();
+        setFaceUpCard();
+        setPlayerTurn(playerTurn);
+        return true;
+    }
 
     public boolean dealCards() {
         for (int i = 0; i < 6; i++){
@@ -112,8 +118,6 @@ public class GameState {
         faceUpCard = cardDeck.nextCard();
         return true;
     }
-
-
 
     /*
      * Randomly initializes player turn for first round, and toggles
@@ -152,12 +156,6 @@ public class GameState {
         return true;
     }
 
-    public boolean setUpBoard() {
-        dealCards();
-        setFaceUpCard();
-        setPlayerTurn(playerTurn);
-        return true;
-    }
 
     public boolean isPlayable(Card c) {
         if(c.getCardValue() + roundScore <= 31) {
@@ -170,7 +168,8 @@ public class GameState {
 
     //playCard just simply removes card from the hand
     // to the table in the inPlayCards arrayList
-    public boolean playCard(Card c) {
+    public boolean playCard(int playerID, Card c) {
+        if(playerID != playerTurn){return false;}
         if(playerTurn == 1) {
             if(isPlayable(c) == true) {
                 p1Hand.remove(c);
@@ -192,6 +191,7 @@ public class GameState {
 
     //can be end turn or change turn, not sure if completely needed
     public boolean endTurn(int playerID) {
+        if(playerID != playerTurn){return false;}
         if(playerTurn == playerID) { //if it's player 1's turn, make it player 2's.
             playerTurn = 2;
         }
@@ -201,9 +201,15 @@ public class GameState {
         return true;
     }
 
-    public boolean discard(Card c) { //discard TO CRIB
+    public boolean discard(int playerID, Card c) { //discard TO CRIB
+        if (playerID != playerTurn){ //checks validity
+            return false;
+        }
         if(playerTurn == 1) {
-            if(isPlayable(c) == true) {
+            if(p1Hand.size() <= 4){
+                return false;
+            }
+            if(isPlayable(c)) {
                 p1Hand.remove(c);
                 p1Hand.trimToSize();
                 crib.add(c);
@@ -211,7 +217,10 @@ public class GameState {
             }
         }
         else if(playerTurn == 2){
-            if(isPlayable(c) == true) {
+            if(p2Hand.size() <= 4){
+                return false;
+            }
+            if(isPlayable(c)) {
                 p2Hand.remove(c);
                 p2Hand.trimToSize();
                 crib.add(c);
