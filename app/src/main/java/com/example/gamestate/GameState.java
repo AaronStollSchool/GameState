@@ -123,24 +123,19 @@ public class GameState {
      * player turn (i.e. if it is player 1's turn, player 2 is dealer).
      */
     public boolean setPlayerTurn() {
-        if(playerTurn == 0) {
-            playerTurn = gen.nextInt(2) + 1;
-
-            if(playerTurn == 1) {
-                isPlayer1Dealer = false;
-            } else {
-                isPlayer1Dealer = true;
-            }
+        if (playerTurn == 0) {
+            playerTurn = 1;//playerTurn = gen.nextInt(2) + 1;
+            isPlayer1Dealer = false;
+            return true;
+        } else if (playerTurn == 1) {
+            playerTurn = 2;
+            isPlayer1Dealer = true;
+            return true;
         } else {
-            if(playerTurn == 1) {
-                playerTurn = 2;
-            } else {
-                playerTurn = 1;
-            }
-
-            isPlayer1Dealer = !(isPlayer1Dealer);
+            playerTurn = 1;
+            isPlayer1Dealer = false;
+            return true;
         }
-        return true;
     }
 
     public boolean exitGame(int playerID){
