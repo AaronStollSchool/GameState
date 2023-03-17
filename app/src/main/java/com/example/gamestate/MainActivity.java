@@ -64,6 +64,11 @@ public class MainActivity extends AppCompatActivity {
 
                 String instance2Str = secondInstance.toString();
                 String instance4Str = fourthInstance.toString();
+
+                etext.append("\nSecond Instance:\n");
+                etext.append(instance2Str);
+                etext.append("\nFourth Instance:\n");
+                etext.append(instance4Str);
             }
         });
     }
