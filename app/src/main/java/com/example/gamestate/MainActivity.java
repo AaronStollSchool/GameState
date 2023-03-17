@@ -23,6 +23,9 @@ public class MainActivity extends AppCompatActivity {
         Button testButton = findViewById(R.id.testButton);
         EditText etext = findViewById(R.id.textView);
 
+        GameState first = new GameState();
+        etext.setText(first.toString());
+
         testButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
@@ -32,31 +35,29 @@ public class MainActivity extends AppCompatActivity {
 
                 //call each method in GameState and print descriptions of the actions taken to the EditText
                 firstInstance.setUpBoard(); //calls dealCards() and setFaceUpCards()
-                etext.append("hands of both players have been dealt\n");
-                etext.append("face up card has been set to a card with the value " + firstInstance.getFaceUpCard().toString() + "\n");
+                etext.append("Hands of both players have been dealt.\n");
+                etext.append("Face up card was drawn, the " + firstInstance.getFaceUpCard().toString() + ".\n");
 
                 firstInstance.setPlayerTurn(1); //setPlayerTurn()
-                etext.append("dealer has been set to player 1\n");
+                etext.append("Dealer has been set to Player 1.\n");
 
-                etext.append("both player's statistics so far: \n" + firstInstance.toString() + "\n");
+                etext.append("Both player's statistics so far: \n" + firstInstance.toString() + "\n");
 
-                firstInstance.discard(firstInstance.getHandCard(1, 0));
+                firstInstance.discard(firstInstance.getHandCard(1, 0)); //discard()
                 firstInstance.discard(firstInstance.getHandCard(1, 2));
-                etext.append("player 1 discarded " + firstInstance.getCribCard(0).toString() + " and " + firstInstance.getCribCard(1).toString() +" to the crib\n");
+                etext.append("Player 1 discarded " + firstInstance.getCribCard(0).toString() + " and " + firstInstance.getCribCard(1).toString() +" to the crib.\n");
 
-                firstInstance.playCard(firstInstance.getHandCard(1,0));
-                etext.append("player 1 played " + firstInstance.getLastPlayed().toString() + "\n");
+                firstInstance.playCard(firstInstance.getHandCard(1,0)); //playCard()
+                etext.append("Player 1 played the " + firstInstance.getLastPlayed().toString() + ".\n");
 
                 firstInstance.endTurn(1);
-                etext.append("player 1 ended their turn \n");
+                etext.append("Player 1 ended their turn.\n");
+
+                etext.append("Now, player 1's hand size is " + firstInstance.getHandSize(1) + ".\n");
 
                 firstInstance.exitGame(1);
-                etext.append("game was exited\n");
-                //firstInstance.playCard();
-                //firstInstance.endTurn();
-                //firstInstance.discard();
+                etext.append("Player 1 exited the game.\n");
 
-                //etext.append("test");
 
                 GameState thirdInstance = new GameState();
                 GameState fourthInstance = new GameState(thirdInstance);
