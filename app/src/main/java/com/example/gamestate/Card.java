@@ -35,16 +35,16 @@ public class Card {
         switch (cardValue)
         {
             case 11:
-                s1 = "Jack";
+                s1 = "J";//"Jack";
                 break;
             case 12:
-                s1 = "Queen";
+                s1 = "Q";//"Queen";
                 break;
             case 13:
-                s1 = "King";
+                s1 = "K";//"King";
                 break;
             case 14:
-                s1 = "Ace";
+                s1 = "A";//"Ace";
                 break;
             default:
                 s1 = Integer.toString(cardValue);
@@ -53,23 +53,23 @@ public class Card {
 
         switch (suit){
             case 1:
-                s2 = "Diamonds";
+                s2 = "\u2666";//"Diamonds";
                 break;
             case 2:
-                s2 = "Hearts";
+                s2 = "\u2764";//"Hearts";
                 break;
             case 3:
-                s2 = "Spades";
+                s2 = "\u2660";//"Spades";
                 break;
             case 4:
-                s2 = "Clubs";
+                s2 = "\u2663";//"Clubs";
                 break;
             default:
                 s2 = "Game Test Cards";
                 break;
         }
 
-        return (s1 + " of " + s2);
+        return (s1 + " " + s2);//(s1 + " of " + s2);
     }
 
 

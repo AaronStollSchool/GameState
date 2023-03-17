@@ -54,6 +54,8 @@ public class GameState {
         inPlayCards = new ArrayList<Card>();
         crib = new ArrayList<Card>();
 
+        faceUpCard = cardDeck.nextCard();
+
         isHard = true;
 
         playerTurn = 0;
@@ -119,30 +121,29 @@ public class GameState {
         return true;
     }
 
+    public int getPlayerTurn() {
+        return playerTurn;
+    }
+
     /*
      * Randomly initializes player turn for first round, and toggles
      * for every subsequent call. Dealer will always be opposite of
      * player turn (i.e. if it is player 1's turn, player 2 is dealer).
      */
-    public boolean setPlayerTurn(int p) {
-        if(playerTurn == 0) {
-            playerTurn = gen.nextInt(2) + 1;
-
-            if(playerTurn == 1) {
-                isPlayer1Dealer = false;
-            } else {
-                isPlayer1Dealer = true;
-            }
+    public boolean setPlayerTurn() {
+        if (playerTurn == 0) {
+            playerTurn = 1;//playerTurn = gen.nextInt(2) + 1;
+            isPlayer1Dealer = false;
+            return true;
+        } else if (playerTurn == 1) {
+            playerTurn = 2;
+            isPlayer1Dealer = true;
+            return true;
         } else {
-            if(playerTurn == 1) {
-                playerTurn = 2;
-            } else {
-                playerTurn = 1;
-            }
-
-            isPlayer1Dealer = !(isPlayer1Dealer);
+            playerTurn = 1;
+            isPlayer1Dealer = false;
+            return true;
         }
-        return true;
     }
 
     public boolean exitGame(int playerID){
@@ -191,7 +192,6 @@ public class GameState {
 
     //can be end turn or change turn, not sure if completely needed
     public boolean endTurn(int playerID) {
-        if(playerID != playerTurn){return false;}
         if(playerTurn == playerID) { //if it's player 1's turn, make it player 2's.
             playerTurn = 2;
         }
