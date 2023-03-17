@@ -37,7 +37,6 @@ public class GameState {
     // 1 In Round
     // 2 Score Screen
 
-
     private int p1RoundScore;
     private int p2RoundScore;
     private int roundScore;
@@ -51,10 +50,6 @@ public class GameState {
 
         p1Hand = new ArrayList<Card>();
         p2Hand = new ArrayList<Card>();
-        for (int i = 0; i < 6; i++){
-            p1Hand.add(cardDeck.nextCard());
-            p2Hand.add(cardDeck.nextCard());
-        }
 
         inPlayCards = new ArrayList<Card>();
         crib = new ArrayList<Card>();
@@ -71,8 +66,6 @@ public class GameState {
         roundScore = 0;
 
         gen = new Random();
-
-        setUpBoard();
     }
 
     //copy constructor
@@ -183,6 +176,7 @@ public class GameState {
         if(playerTurn == 1) {
             if(isPlayable(c) == true) {
                 p1Hand.remove(c);
+                p1Hand.trimToSize();
                 inPlayCards.add(c);
                 return true;
             }
@@ -190,6 +184,7 @@ public class GameState {
         else if(playerTurn == 2){
             if(isPlayable(c) == true) {
                 p2Hand.remove(c);
+                p2Hand.trimToSize();
                 inPlayCards.add(c);
                 return true;
             }
@@ -198,22 +193,21 @@ public class GameState {
     }
 
     //can be end turn or change turn, not sure if completely needed
-    public boolean endTurn() {
-        if(playerTurn == 1) { //if it's player 1's turn, make it player 2's.
+    public boolean endTurn(int playerID) {
+        if(playerTurn == playerID) { //if it's player 1's turn, make it player 2's.
             playerTurn = 2;
-            return true;
         }
-        else if(playerTurn == 2) {
+        else {
             playerTurn = 1;
-            return true;
         }
-        return false;
+        return true;
     }
 
     public boolean discard(Card c) { //discard TO CRIB
         if(playerTurn == 1) {
             if(isPlayable(c) == true) {
                 p1Hand.remove(c);
+                p1Hand.trimToSize();
                 crib.add(c);
                 return true;
             }
@@ -221,6 +215,7 @@ public class GameState {
         else if(playerTurn == 2){
             if(isPlayable(c) == true) {
                 p2Hand.remove(c);
+                p2Hand.trimToSize();
                 crib.add(c);
                 return true;
             }
@@ -269,11 +264,8 @@ public class GameState {
     public Card getCribCard(int index){
         return crib.get(index);
     }
-    public int getCribSize(){
-        return crib.size();
-    }
-
     public Card getFaceUpCard() {return faceUpCard;}
+
     @Override
     public String toString() {
 
