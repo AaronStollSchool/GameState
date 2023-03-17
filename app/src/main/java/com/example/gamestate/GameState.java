@@ -105,7 +105,7 @@ public class GameState {
     public boolean setUpBoard() {
         dealCards();
         setFaceUpCard();
-        setPlayerTurn(playerTurn);
+        setPlayerTurn();
         return true;
     }
 
