@@ -114,6 +114,14 @@ public class GameState {
             p1Hand.add(cardDeck.nextCard());
             p2Hand.add(cardDeck.nextCard());
         }
+        for(Card c : p1Hand)
+        {
+            c.setPlayer(1);
+        }
+        for(Card c : p2Hand)
+        {
+            c.setPlayer(2);
+        }
         return true;
     }
     public boolean setFaceUpCard() {
@@ -201,7 +209,7 @@ public class GameState {
         return true;
     }
 
-    public boolean discard(int playerID, Card c) { //discard TO CRIB
+    public boolean discard(int playerID, Card c) { //discard, add to crib
         if (playerID != playerTurn){ //checks validity
             return false;
         }

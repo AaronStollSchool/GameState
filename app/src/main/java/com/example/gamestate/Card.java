@@ -14,19 +14,22 @@ public class Card {
 
 
     private boolean isSelected;
+    private int player;
 
     public Card(int val, int suit){
        cardValue = val;
        this.suit = suit;
        isSelected = false;
-
+       player = 0;
     }
 
     public int getCardValue() { return cardValue; }
     public int getSuit() { return suit; }
     public boolean isSelected() { return isSelected; }
+    public int getPlayer() { return player; }
 
     public void toggleSelected() { isSelected = !(isSelected); }
+    public void setPlayer(int player) { this.player = player; }
 
     public String toString()
     {
